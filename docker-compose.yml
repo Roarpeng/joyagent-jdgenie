@@ -1,0 +1,20 @@
+services:
+  genie:
+    build:
+      context: .
+      target: final
+      args:
+        VITE_API_BASE_URL: "http://localhost:8080"
+    container_name: genie-app
+    networks:
+      - genie-net
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+      - "1601:1601"
+    volumes:
+      - /data/genie-tool:/data/genie-tool
+
+networks:
+  genie-net:
+    driver: bridge

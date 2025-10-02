@@ -1,5 +1,16 @@
 #!/bin/bash
 
+echo "=== 启动前检查 ==="
+echo "当前工作目录: $(pwd)"
+echo "目录列表:"
+ls -la
+
+# 如果发现目录缺失，可能是构建问题
+if [ ! -d "ui" ] || [ ! -d "backend" ] || [ ! -d "client" ] || [ ! -d "tool" ]; then
+    echo "❌ 错误：一个或多个关键目录缺失！请检查 Docker 构建过程。"
+    exit 1
+fi
+
 # 添加调试信息
 echo "当前工作目录: $(pwd)"
 echo "目录列表:"
